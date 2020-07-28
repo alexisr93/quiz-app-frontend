@@ -1,14 +1,19 @@
 import React from 'react';
 import ProblemNav from './ProblemNav';
 import Problem from './Problem';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 function MainBodyQA() {
   return (
-    <div>
-      <h1>Hello from MainBodyQA</h1>
-      <ProblemNav/>
-      <Problem/>
-    </div>
+    <Container>
+      <Row>
+        <Problem/>
+      </Row>
+      <Row>
+        <ProblemNav/>
+      </Row>
+    </Container>
   );
 }
 

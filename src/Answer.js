@@ -1,10 +1,14 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 function Answer() {
   return (
-    <div>
-      <h1>Hello from Answer</h1>
-    </div>
+    <Container>
+      <Button variant="light" size="lg">
+        This is answer one
+      </Button>
+    </Container>
   );
 }
 

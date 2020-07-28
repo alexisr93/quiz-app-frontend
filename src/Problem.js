@@ -1,13 +1,20 @@
 import React from 'react';
 import Question from './Question';
 import Answers from './Answers';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Problem() {
   return (
     <div>
-      <h1>Hello from Problem</h1>
-      <Question/>
-      <Answers/>
+      <Row>
+        <Col>
+          <Question/>
+        </Col>
+        <Col>
+          <Answers/>
+        </Col>
+      </Row>
     </div>
   );
 }
