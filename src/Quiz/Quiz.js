@@ -4,7 +4,7 @@ import Problem from './Problem';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-function MainBodyQA() {
+function Quiz() {
   return (
     <Container className="mt-5">
       <Row className="justify-content-center" style={{height: '500px'}}>
@@ -17,4 +17,4 @@ function MainBodyQA() {
   );
 }
 
-export default MainBodyQA;
+export default Quiz;

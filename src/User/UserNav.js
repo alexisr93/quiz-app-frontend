@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-function MainNav() {
+function UserNav() {
   return (
     <Row style={{backgroundColor: '#f8f9fa'}}>
       <Container>
@@ -14,8 +14,8 @@ function MainNav() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="#Home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <Nav.Link href="#Other">Other</Nav.Link>
+              <Nav.Link href="#Quizzes">Quizzes</Nav.Link>
+              <Nav.Link href="#Results">Results</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="#Signout">Sign Out</Nav.Link>
@@ -27,4 +27,4 @@ function MainNav() {
   );
 }
 
-export default MainNav;
+export default UserNav;
