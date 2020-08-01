@@ -6,11 +6,11 @@ import Row from 'react-bootstrap/Row';
 
 function MainBodyQA() {
   return (
-    <Container>
-      <Row>
+    <Container className="mt-5">
+      <Row className="justify-content-center" style={{height: '500px'}}>
         <Problem/>
       </Row>
-      <Row>
+      <Row className="justify-content-center mt-5">
         <ProblemNav/>
       </Row>
     </Container>

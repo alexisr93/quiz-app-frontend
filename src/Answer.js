@@ -4,11 +4,9 @@ import Button from 'react-bootstrap/Button';
 
 function Answer() {
   return (
-    <Container>
-      <Button variant="light" size="lg">
-        This is answer one
-      </Button>
-    </Container>
+    <Button variant="light" size="lg" block>
+      This is an answer
+    </Button>
   );
 }
 
