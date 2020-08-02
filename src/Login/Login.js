@@ -22,10 +22,10 @@ function Login() {
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" placeholder="Enter Password" />
           </Form.Group>
           <Button variant="outline-secondary" type="submit">
-            Submit
+            Sign in
           </Button>
         </Form>
       </Row>
