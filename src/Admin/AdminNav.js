@@ -14,8 +14,8 @@ function AdminNav() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="#Home">Home</Nav.Link>
+              <Nav.Link href="#Quizzes">Quizzes</Nav.Link>
               <Nav.Link href="#Create">Create</Nav.Link>
-              <Nav.Link href="#Edit">Edit</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="#Signout">Sign Out</Nav.Link>

@@ -4,11 +4,12 @@ import Quiz from './Quiz/Quiz';
 import MainNav from './MainNav';
 import User from './User/User';
 import Admin from './Admin/Admin';
+import Login from './Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <User/>
+      <Login/>
     </div>
   );
 }
