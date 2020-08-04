@@ -17,14 +17,18 @@ function Admin() {
       <AdminNav/>
       <Container>
       <Switch>
-        <Route path="/admin/home">
+        <Route exact path="/admin/quizzes/quiz1">
+          <ViewQuiz/>
+        </Route>
+
+        <Route exact path="/admin/home">
           <>
           </>
         </Route>
-        <Route path="/admin/quizzes">
+        <Route exact path="/admin/quizzes">
           <QuizList/>
         </Route>
-        <Route path="/admin/create">
+        <Route exact path="/admin/create">
           <Create/>
         </Route>
     </Switch>

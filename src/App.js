@@ -20,13 +20,13 @@ function App() {
         <Link to="/admin">Admin </Link>
         <Link to="/user">User </Link>
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login/>
           </Route>
-          <Route path="/admin">
+          <Route exact path="/admin">
             <Admin/>
           </Route>
-          <Route path="/user">
+          <Route exact path="/user">
             <User/>
           </Route>
         </Switch>
