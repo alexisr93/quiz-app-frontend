@@ -20,7 +20,7 @@ function QuizListItem() {
       <ListGroup.Item className="text-left">
         <Row>
           <Col>
-            <Link to="/admin/quizzes/quiz1">
+            <Link to="/user/quizlist/quiz1">
               Chapter 1 Section 1
             </Link>
           </Col>

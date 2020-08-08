@@ -15,7 +15,6 @@ import {
   Link
 } from "react-router-dom";
 
-
 function ViewQuiz() {
   return (
     <Container className="mt-4">
@@ -26,6 +25,9 @@ function ViewQuiz() {
             <Card.Text>
               Quiz Description
             </Card.Text>
+            <ButtonGroup className="float-right">
+              <Button variant="outline-secondary">Edit</Button>
+            </ButtonGroup>
           </Card.Body>
         </Card>
       </Row>

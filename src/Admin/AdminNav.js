@@ -19,14 +19,8 @@ function AdminNav() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Link to="/admin/home">
+              <Link to="/admin/">
                 <Nav.Link href="#home">Home</Nav.Link>
-              </Link>
-              <Link to="/admin/quizzes">
-                <Nav.Link href="#quizzes">Quizzes</Nav.Link>
-              </Link>
-              <Link to="/admin/create">
-                <Nav.Link href="#create">Create</Nav.Link>
               </Link>
             </Nav>
             <Nav>

@@ -1,15 +1,44 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import UserNav from './UserNav'
+import UserNav from './UserNav';
+import QuizList from './QuizList';
+import Create from './Create';
+import ViewQuiz from './ViewQuiz';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function User() {
   return (
-    <>
+    <Router>
       <UserNav/>
+
       <Container>
-        User
+        <Switch>
+          <Route exact path="/user/">
+            <>
+              User/Home
+            </>
+          </Route>
+          <Route exact path="/user/quizlist">
+            <QuizList/>
+          </Route>
+          <Route exact path="/user/quizlist/quiz1">
+            <ViewQuiz/>
+          </Route>
+          <Route exact path="/user/quizlist/myquizzes">
+            <QuizList/>
+          </Route>
+          <Route exact path="/user/create">
+            <Create/>
+          </Route>
+
+        </Switch>
       </Container>
-    </>
+    </Router>
   );
 }
 

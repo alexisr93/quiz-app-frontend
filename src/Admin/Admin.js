@@ -1,9 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import AdminNav from './AdminNav';
-import QuizList from './QuizList';
-import ViewQuiz from './ViewQuiz';
-import Create from './Create';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,19 +14,10 @@ function Admin() {
       <AdminNav/>
       <Container>
       <Switch>
-        <Route exact path="/admin/quizzes/quiz1">
-          <ViewQuiz/>
-        </Route>
-
-        <Route exact path="/admin/home">
+        <Route exact path="/admin/">
           <>
+            Admin/Home
           </>
-        </Route>
-        <Route exact path="/admin/quizzes">
-          <QuizList/>
-        </Route>
-        <Route exact path="/admin/create">
-          <Create/>
         </Route>
     </Switch>
       </Container>

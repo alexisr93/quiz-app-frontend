@@ -3,6 +3,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function UserNav() {
   return (
@@ -13,9 +19,18 @@ function UserNav() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#Home">Home</Nav.Link>
-              <Nav.Link href="#Quizzes">Quizzes</Nav.Link>
-              <Nav.Link href="#Results">Results</Nav.Link>
+              <Link to="/user/">
+                <Nav.Link href="#Home">Home</Nav.Link>
+              </Link>
+              <Link to="/user/quizlist">
+                <Nav.Link href="#Quizzes">Take Quiz</Nav.Link>
+              </Link>
+              <Link to="/user/quizlist/myquizzes">
+                <Nav.Link href="#Quizzes">My Quizzes</Nav.Link>
+              </Link>
+              <Link to="/user/create">
+                <Nav.Link href="#Create">Create</Nav.Link>
+              </Link>
             </Nav>
             <Nav>
               <Nav.Link href="#Signout">Sign Out</Nav.Link>
