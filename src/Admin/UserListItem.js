@@ -57,7 +57,7 @@ class UserList extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="outline-secondarys" onClick={this.handleClose}>
+            <Button variant="outline-secondary" onClick={this.handleClose}>
               Close
             </Button>
             <Button variant="outline-secondary" onClick={this.handleClose}>
