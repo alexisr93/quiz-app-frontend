@@ -15,9 +15,9 @@ class UserList extends React.Component {
     this.state = {
       users: []
     };
+    this.fetchUsers = this.fetchUsers.bind(this);
   }
-
-  componentDidMount() {
+  fetchUsers() {
     fetch(url + '/user', {
       method: 'GET',
       headers: {
@@ -31,10 +31,19 @@ class UserList extends React.Component {
       })
      .catch(console.log)
   }
+  componentDidMount() {
+    this.fetchUsers();
+  }
 
   render() {
     let listOfUsers = this.state.users.map(element => {
-      return <UserListItem username={element.username} email={element.email}/>
+      return (
+        <UserListItem
+          username={element.username}
+          email={element.email}
+          refreshUsers={this.fetchUsers}
+        />
+      );
     })
     return (
       <Container className="mt-4">
