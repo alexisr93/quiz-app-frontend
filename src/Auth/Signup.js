@@ -47,7 +47,7 @@ class Signup extends React.Component {
   render() {
     return (
       <Container className="d-flex justify-content-center mt-5 pt-5">
-        <Row className="mt-5" style={{ backgroundColor: '#f8f9fa', height: '500px', width: '500px'}}>
+        <Row className="mt-5" style={{ backgroundColor: '#f8f9fa', height: '550px', width: '500px'}}>
           <Form onSubmit={this.handleSubmit} className="mt-5 ml-4 mr-4 text-left" style={{ width: '100%'}}>
             <h4>Sign up</h4>
             <Form.Group controlId="formBasicUsername">
