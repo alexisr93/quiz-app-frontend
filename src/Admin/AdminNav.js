@@ -20,7 +20,7 @@ function AdminNav() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Link to="/admin/">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#users">Users</Nav.Link>
               </Link>
             </Nav>
             <Nav>

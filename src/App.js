@@ -4,7 +4,8 @@ import Quiz from './Quiz/Quiz';
 import MainNav from './MainNav';
 import User from './User/User';
 import Admin from './Admin/Admin';
-import Login from './Login/Login';
+import Login from './Auth/Login';
+import Signup from './Auth/Signup';
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/user">
             <User/>
+          </Route>
+          <Route exact path="/signup">
+            <Signup/>
           </Route>
         </Switch>
       </Router>
