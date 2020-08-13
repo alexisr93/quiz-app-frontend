@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
   useHistory,
 } from "react-router-dom";
@@ -14,7 +11,7 @@ import {
 
 function UserNav() {
   let history = useHistory();
-  
+
   const handleSignout = () => {
     localStorage.clear();
     history.push('/login');

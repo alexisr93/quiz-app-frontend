@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 
@@ -90,7 +89,7 @@ function Signup() {
           <Form.Group controlId="formBasicPassword2">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
-              name="confirm_password"
+              name="confirmPassword"
               onChange={handleChangeConfirmPassword}
               type="password"
               placeholder="Confirm Password"

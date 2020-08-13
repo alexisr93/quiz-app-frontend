@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import Quiz from './Quiz/Quiz';
-import MainNav from './MainNav';
 import User from './User/User';
 import Admin from './Admin/Admin';
 import Login from './Auth/Login';
@@ -10,7 +8,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 function App() {

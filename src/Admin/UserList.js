@@ -1,10 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import UserListItem from './UserListItem';
 
 let url = 'http://localhost:4000';
@@ -39,6 +35,7 @@ class UserList extends React.Component {
     let listOfUsers = this.state.users.map(element => {
       return (
         <UserListItem
+          key={element.username}
           username={element.username}
           email={element.email}
           refreshUsers={this.fetchUsers}

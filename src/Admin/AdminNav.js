@@ -4,13 +4,16 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  Link,
+  useHistory,
 } from "react-router-dom";
 
 function AdminNav() {
+  let history = useHistory();
+
+  const handleSignout = () => {
+    history.push('/login');
+  }
   return (
     <Row style={{backgroundColor: '#f8f9fa'}}>
       <Container>
@@ -25,7 +28,7 @@ function AdminNav() {
             </Nav>
             <Nav>
               <Link to="/admin/signout">
-                <Nav.Link href="#signout">Sign Out</Nav.Link>
+                <Nav.Link onClick={handleSignout}>Sign Out</Nav.Link>
               </Link>
             </Nav>
           </Navbar.Collapse>

@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
   useHistory,
 } from "react-router-dom";
@@ -18,7 +13,6 @@ let url = 'http://localhost:4000';
 function Login(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [redirect, setRedirect] = useState(false);
 
   let history = useHistory();
 
@@ -47,7 +41,10 @@ function Login(props) {
       localStorage.setItem('username', username);
     })
     .then(() => {
-      history.push('/user');
+      console.log('Token ' + localStorage.getItem('token'));
+      if (localStorage.getItem('token') && localStorage.getItem('username')){
+        history.push('/user');
+      }
     })
     .catch(console.log)
     event.preventDefault();
@@ -61,21 +58,31 @@ function Login(props) {
 
   return (
     <Container className="d-flex justify-content-center mt-5 pt-5">
-      <Row className="justify-content-center mt-5" style={{ backgroundColor: '#f8f9fa', height: '400px', width: '325px'}}>
+      <Row
+        className="justify-content-center mt-5"
+        style={{ backgroundColor: '#f8f9fa', height: '400px', width: '325px'}}
+      >
         <Form className="mt-5" onSubmit={handleSubmit}>
           <h3>Quiz App</h3>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
-            <Form.Control name='username' onChange={handleChangeUsername} placeholder="Enter Username " />
+            <Form.Control
+              name='username'
+              onChange={handleChangeUsername}
+              placeholder="Enter Username "
+            />
           </Form.Group>
 
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Remember Username" />
-          </Form.Group>
+          <br/>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name='password' onChange={handleChangePassword} placeholder="Enter Password" />
+            <Form.Control
+              type="password"
+              name='password'
+              onChange={handleChangePassword}
+              placeholder="Enter Password"
+            />
           </Form.Group>
           <Button variant="outline-secondary" type="submit">
             Log in
