@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
@@ -10,76 +10,85 @@ import {
   Switch,
   Route,
   Link,
+  useHistory,
 } from "react-router-dom";
 
 let url = 'http://localhost:4000';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+function Login(props) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [redirect, setRedirect] = useState(false);
+
+  let history = useHistory();
+
+  const handleChangeUsername = (event) => {
+    setUsername(event.target.value);
   }
 
-  handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
   }
 
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     fetch(url + '/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "username": this.state.username,
-        "password": this.state.password
+        "username": username,
+        "password": password
       })
     })
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-     .catch(console.log)
+    .then(res => res.json())
+    .then((data) => {
+      localStorage.setItem('token', data);
+      localStorage.setItem('username', username);
+    })
+    .then(() => {
+      history.push('/user');
+    })
+    .catch(console.log)
     event.preventDefault();
   }
 
-  render() {
-    return (
-      <Container className="d-flex justify-content-center mt-5 pt-5">
-        <Row className="justify-content-center mt-5" style={{ backgroundColor: '#f8f9fa', height: '400px', width: '325px'}}>
-          <Form className="mt-5" onSubmit={this.handleSubmit}>
-            <h3>Quiz App</h3>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Username</Form.Label>
-              <Form.Control name='username' onChange={this.handleChange} placeholder="Enter Username " />
-            </Form.Group>
+  useEffect(() => {
+    if (localStorage.getItem('token') && localStorage.getItem('username')){
+      history.push('/user');
+    }
+  })
 
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Remember Username" />
-            </Form.Group>
+  return (
+    <Container className="d-flex justify-content-center mt-5 pt-5">
+      <Row className="justify-content-center mt-5" style={{ backgroundColor: '#f8f9fa', height: '400px', width: '325px'}}>
+        <Form className="mt-5" onSubmit={handleSubmit}>
+          <h3>Quiz App</h3>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control name='username' onChange={handleChangeUsername} placeholder="Enter Username " />
+          </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name='password' onChange={this.handleChange} placeholder="Enter Password" />
-            </Form.Group>
-            <Button variant="outline-secondary" type="submit">
-              Log in
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Remember Username" />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" name='password' onChange={handleChangePassword} placeholder="Enter Password" />
+          </Form.Group>
+          <Button variant="outline-secondary" type="submit">
+            Log in
+          </Button>
+          <Link to="/signup" style={{ color: 'inherit', textDecoration: 'none'}}>
+            <Button variant="outline-secondary">
+              Sign up
             </Button>
-            <Link to="/signup" style={{ color: 'inherit', textDecoration: 'none'}}>
-              <Button variant="outline-secondary">
-                Sign up
-              </Button>
-            </Link>
-          </Form>
-        </Row>
-      </Container>
-    );
-  }
+          </Link>
+        </Form>
+      </Row>
+    </Container>
+  );
 }
 
 export default Login;
