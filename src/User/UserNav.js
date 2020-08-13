@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
@@ -7,10 +7,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory,
 } from "react-router-dom";
 
+
 function UserNav() {
+  let history = useHistory();
+  
+  const handleSignout = () => {
+    localStorage.clear();
+    history.push('/login');
+  }
+
   return (
     <Row style={{backgroundColor: '#f8f9fa'}}>
       <Container>
@@ -33,7 +42,7 @@ function UserNav() {
               </Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#Signout">Sign Out</Nav.Link>
+              <Nav.Link href="#Signout" onClick={handleSignout}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -20,7 +20,7 @@ function User() {
         <Switch>
           <Route exact path="/user/">
             <>
-              User/Home
+              Hello, {localStorage.getItem('username')}
             </>
           </Route>
           <Route exact path="/user/quizlist">

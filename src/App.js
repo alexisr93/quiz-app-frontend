@@ -17,9 +17,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Link to="/login">Login </Link>
-        <Link to="/admin">Admin </Link>
-        <Link to="/user">User </Link>
         <Switch>
           <Route exact path="/login">
             <Login/>
