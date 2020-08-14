@@ -8,7 +8,7 @@ import {
   Link
 } from "react-router-dom";
 
-function QuizListItem() {
+function TakeQuizListItem() {
   return (
     <>
       <ListGroup.Item className="text-left">
@@ -22,7 +22,6 @@ function QuizListItem() {
             <ButtonGroup className="float-right">
               <Button variant="outline-secondary">Start Quiz</Button>
               <Button variant="outline-secondary">View Results</Button>
-              <Button variant="outline-danger">Delete</Button>
             </ButtonGroup>
           </Col>
         </Row>
@@ -31,4 +30,4 @@ function QuizListItem() {
   );
 }
 
-export default QuizListItem;
+export default TakeQuizListItem;

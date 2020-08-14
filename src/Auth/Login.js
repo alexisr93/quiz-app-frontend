@@ -8,7 +8,7 @@ import {
   useHistory,
 } from "react-router-dom";
 
-let url = 'http://localhost:4000';
+const url = 'http://localhost:4000';
 
 function Login(props) {
   const [username, setUsername] = useState('');
@@ -37,21 +37,20 @@ function Login(props) {
     })
     .then(res => res.json())
     .then((data) => {
-      localStorage.setItem('token', data);
+      localStorage.setItem('token', data.token);
       localStorage.setItem('username', username);
     })
     .then(() => {
-      console.log('Token ' + localStorage.getItem('token'));
-      if (localStorage.getItem('token') && localStorage.getItem('username')){
+      if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username')){
         history.push('/user');
       }
     })
     .catch(console.log)
     event.preventDefault();
   }
-
+  // There may be a bug in useEffect or just above in the final .then()
   useEffect(() => {
-    if (localStorage.getItem('token') && localStorage.getItem('username')){
+    if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username')){
       history.push('/user');
     }
   })

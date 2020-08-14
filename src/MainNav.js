@@ -1,3 +1,4 @@
+// Doesn't look like this is being used anywhere
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -9,7 +10,7 @@ function MainNav() {
     <Row style={{backgroundColor: '#f8f9fa'}}>
       <Container>
         <Navbar bg="light" expand="md">
-          <Navbar.Brand href="#home">Quiz App</Navbar.Brand>
+          <Navbar.Brand>Quiz App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
