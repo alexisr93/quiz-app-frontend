@@ -1,20 +1,20 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import QuizListItem from './QuizListItem';
+import MyQuizListItem from './MyQuizListItem';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 
-function Edit() {
+function MyQuizList() {
   return (
     <>
       <FormGroup className="mt-4">
         <Form.Control placeholder="Search Quizzes"></Form.Control>
       </FormGroup>
       <ListGroup className="mt-4">
-        <QuizListItem/>
+        <MyQuizListItem/>
       </ListGroup>
     </>
   );
 }
 
-export default Edit;
+export default MyQuizList;

@@ -8,7 +8,7 @@ import {
   Link
 } from "react-router-dom";
 
-function QuizListItem() {
+function MyQuizListItem() {
   return (
     <>
       <ListGroup.Item className="text-left">
@@ -31,4 +31,4 @@ function QuizListItem() {
   );
 }
 
-export default QuizListItem;
+export default MyQuizListItem;

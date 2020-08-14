@@ -4,18 +4,47 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom'
 
+const url = 'http://localhost:4000';
+
 function Create() {
   const [show, setShow] = useState(true);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const history = useHistory();
 
   const handleSaveChanges = () => {
-    setShow(false);
+    fetch(url + '/quizzes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "title": title,
+        "description": description,
+        'createdBy': localStorage.getItem('username'),
+      })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(console.log)
+    // TODO: Tell the user that they have successfully created a quiz
+    // TODO: Redirect to MyQuizzes so they can add questions
     history.push('/user');
   }
 
   const handleClose = () => {
     setShow(false);
     history.push('/user');
+  }
+
+  const handleChangeTitle = (event) => {
+    setTitle(event.target.value);
+  }
+
+  const handleChangeDescription = (event) => {
+    setDescription(event.target.value);
   }
 
   return (
@@ -29,8 +58,9 @@ function Create() {
             <Form.Group controlId="formUsername">
               <Form.Label>Quiz Title</Form.Label>
               <Form.Control
-                name="quizTitle"
+                name="title"
                 placeholder="Quiz Title"
+                onChange={handleChangeTitle}
               />
             </Form.Group>
 
@@ -39,6 +69,7 @@ function Create() {
               <Form.Control
                 name="description"
                 placeholder="Description"
+                onChange={handleChangeDescription}
                 />
             </Form.Group>
           </Form>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import UserNav from './UserNav';
-import QuizList from './QuizList';
+import MyQuizList from './MyQuizList';
 import TakeQuizList from './TakeQuizList';
 import Create from './Create';
 import ViewQuiz from './ViewQuiz';
@@ -36,7 +36,7 @@ function User() {
             <TakeQuizList/>
           </Route>
           <Route exact path="/user/quizlist">
-            <QuizList/>
+            <MyQuizList/>
           </Route>
           <Route exact path="/user/quizlist/quiz1">
             <ViewQuiz/>
