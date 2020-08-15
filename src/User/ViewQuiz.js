@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -9,15 +9,40 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 
-function ViewQuiz() {
+let url = 'http://localhost:4000';
+
+function ViewQuiz(props) {
+  const [quizId, setQuizId] = useState(props.location.state.id);
+  const [quizTitle, setQuizTitle] = useState('');
+  const [quizDescription, setQuizDescription] = useState('');
+  const [username, setUsername] = useState(localStorage.getItem('username'));
+  const [quizQuestions, setQuizQuestions] = useState([]);
+
+  useEffect(() => {
+    fetch(url + '/quiz/' + username + '/' + quizId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+      setQuizTitle(data.title);
+      setQuizDescription(data.description);
+      setQuizQuestions(data.questions);
+    })
+   .catch(console.log)
+  }, [quizId]);
+
   return (
     <Container className="mt-4">
       <Row>
         <Card className="mb-4" style={{ width: '100%'}}>
           <Card.Body>
-            <Card.Title>Quiz Title</Card.Title>
+            <Card.Title>{quizTitle}</Card.Title>
             <Card.Text>
-              Quiz Description
+              {quizDescription}
             </Card.Text>
             <ButtonGroup className="float-right">
               <Button variant="outline-secondary">Edit</Button>

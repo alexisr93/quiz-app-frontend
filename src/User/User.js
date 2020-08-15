@@ -38,9 +38,7 @@ function User() {
           <Route exact path="/user/quizlist">
             <MyQuizList/>
           </Route>
-          <Route exact path="/user/quizlist/quiz1">
-            <ViewQuiz/>
-          </Route>
+          <Route exact path="/user/quizlist/quiz" component={ViewQuiz} />
           <Route exact path="/user/create">
             <Create/>
           </Route>
