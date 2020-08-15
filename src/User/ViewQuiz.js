@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import QuestionListItem from './QuestionListItem';
 
 let url = 'http://localhost:4000';
 
@@ -19,6 +20,37 @@ function ViewQuiz(props) {
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const [newQuestion, setNewQuestion] = useState('');
+  const [newAnswer1, setNewAnswer1] = useState('');
+  const [newAnswer2, setNewAnswer2] = useState('');
+  const [newAnswer3, setNewAnswer3] = useState('');
+  const [newAnswer4, setNewAnswer4] = useState('');
+  const [newCorrectAnswer, setNewCorrectAnswer] = useState('');
+  const [questionList, setQuestionList] = useState([]);
+
+  const handleChangeNewQuestion = (event) => {
+    setNewQuestion(event.target.value);
+  };
+
+  const handleChangeNewAnswer1 = (event) => {
+    setNewAnswer1(event.target.value);
+  };
+
+  const handleChangeNewAnswer2 = (event) => {
+    setNewAnswer2(event.target.value);
+  };
+
+  const handleChangeNewAnswer3 = (event) => {
+    setNewAnswer3(event.target.value);
+  };
+
+  const handleChangeNewAnswer4 = (event) => {
+    setNewAnswer4(event.target.value);
+  };
+
+  const handleChangeNewCorrectAnswer = (event) => {
+    setNewCorrectAnswer(event.target.value);
+  };
 
   const handleShowQuestionModal = () => {
     setShowQuestionModal(true);
@@ -29,8 +61,33 @@ function ViewQuiz(props) {
   };
 
   const handleSaveQuestion = () => {
+    fetch(url + '/quiz/' + username + '/' + quizId, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "id": quizId,
+        "username": username,
+        "question": newQuestion,
+        "answer1": newAnswer1,
+        "answer2": newAnswer2,
+        "answer3": newAnswer3,
+        "answer4": newAnswer4,
+        "correctAnswer": newCorrectAnswer,
+      })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      setQuizQuestions(data.questions);
+    })
+    .then(() => {
+      setShowQuestionModal(false);
+    })
+   .catch(console.log)
 
   };
+
 
   useEffect(() => {
     fetch(url + '/quiz/' + username + '/' + quizId, {
@@ -48,6 +105,14 @@ function ViewQuiz(props) {
     })
    .catch(console.log)
   }, [quizId]);
+
+  useEffect(() => {
+    setQuestionList(quizQuestions.map((element) => {
+      return(
+        <QuestionListItem question={element.question} />
+      );
+    }));
+  }, [quizQuestions]);
 
   return (
     <>
@@ -72,29 +137,7 @@ function ViewQuiz(props) {
           </ButtonGroup>
         </Row>
         <Row>
-          <ListGroup.Item className="text-left" style={{width: '100%'}}>
-            <Nav.Item>
-              <Row>
-                <Col className="d-flex align-items-center" md={1}>
-                  <Form.Check type="checkbox" label="" />
-                </Col>
-                <Col md={9}>
-                  <h6>
-                    Question 1
-                  </h6>
-                  <p>
-                    This is a question?
-                  </p>
-                </Col>
-                <Col md={2}>
-                  <ButtonGroup className="float-right">
-                    <Button variant="outline-secondary">Edit</Button>
-                    <Button variant="outline-secondary">Delete</Button>
-                  </ButtonGroup>
-                </Col>
-              </Row>
-            </Nav.Item>
-          </ListGroup.Item>
+          {questionList}
         </Row>
       </Container>
 
@@ -110,6 +153,7 @@ function ViewQuiz(props) {
                 as="textarea"
                 name="question"
                 placeholder="Question"
+                onChange={handleChangeNewQuestion}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
@@ -117,6 +161,7 @@ function ViewQuiz(props) {
               <Form.Control
                 name="answer1"
                 placeholder="Answer 1"
+                onChange={handleChangeNewAnswer1}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
@@ -124,6 +169,7 @@ function ViewQuiz(props) {
               <Form.Control
                 name="answer2"
                 placeholder="Answer 2"
+                onChange={handleChangeNewAnswer2}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
@@ -131,6 +177,7 @@ function ViewQuiz(props) {
               <Form.Control
                 name="answer3"
                 placeholder="Answer 3"
+                onChange={handleChangeNewAnswer3}
               />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
