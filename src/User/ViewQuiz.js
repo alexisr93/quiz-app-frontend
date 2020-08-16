@@ -88,7 +88,6 @@ function ViewQuiz(props) {
 
   };
 
-
   useEffect(() => {
     fetch(url + '/quiz/' + username + '/' + quizId, {
       method: 'GET',
@@ -109,7 +108,21 @@ function ViewQuiz(props) {
   useEffect(() => {
     setQuestionList(quizQuestions.map((element) => {
       return(
-        <QuestionListItem question={element.question} />
+        <QuestionListItem
+          questionData={{
+            'questionId': element._id,
+            'question': element.question,
+            'answer1': element.answer1,
+            'answer2': element.answer2,
+            'answer3': element.answer3,
+            'answer4': element.answer4,
+            'correctAnswer': element.correctAnswer,
+          }}
+          quizData={{
+            'username': username,
+            'quizId': quizId,
+          }}
+        />
       );
     }));
   }, [quizQuestions]);
