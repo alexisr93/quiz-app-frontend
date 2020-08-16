@@ -201,6 +201,7 @@ function ViewQuiz(props) {
                     name="correctAnswer"
                     id="formHorizontalRadios1"
                     value="option1"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
                 <Col>
@@ -210,6 +211,7 @@ function ViewQuiz(props) {
                     name="correctAnswer"
                     id="formHorizontalRadios2"
                     value="option2"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
                 <Col>
@@ -219,6 +221,7 @@ function ViewQuiz(props) {
                     name="correctAnswer"
                     id="formHorizontalRadios3"
                     value="option3"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
                 <Col>
@@ -228,6 +231,7 @@ function ViewQuiz(props) {
                     name="correctAnswer"
                     id="formHorizontalRadios3"
                     value="option4"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
               </Row>

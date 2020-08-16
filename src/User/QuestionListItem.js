@@ -149,37 +149,45 @@ function QuestionListItem(props) {
                 <Col>
                   <Form.Check
                     type="radio"
+                    checked={questionData.correctAnswer == 'option1'}
                     label="Answer 1"
                     name="correctAnswer"
                     id="formHorizontalRadios1"
                     value="option1"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
+                    checked={questionData.correctAnswer == 'option2'}
                     label="Answer 2"
                     name="correctAnswer"
                     id="formHorizontalRadios2"
                     value="option2"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
+                    checked={questionData.correctAnswer == 'option3'}
                     label="Answer 3"
                     name="correctAnswer"
                     id="formHorizontalRadios3"
                     value="option3"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
+                    checked={questionData.correctAnswer == 'option4'}
                     label="Answer 4"
                     name="correctAnswer"
                     id="formHorizontalRadios3"
                     value="option4"
+                    onChange={handleChangeQuestionData}
                   />
                 </Col>
               </Row>
