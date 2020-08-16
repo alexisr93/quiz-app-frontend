@@ -11,64 +11,26 @@ let url = 'http://localhost:4000';
 
 function QuestionListItem(props) {
   const [showEditQuestionModal, setShowEditQuestionModal] = useState(false);
-
-  /*
-  Eventually use this for the question data
   const [questionData, setQuestionData] = useState({
     'question': props.questionData.question,
     'option1': props.questionData.option1,
     'option2': props.questionData.option2,
     'option3': props.questionData.option3,
     'option4': props.questionData.option4,
-    'correctAnswer': props.questionDAta.correctAnswer
-  })
+    'correctAnswer': props.questionData.correctAnswer
+  });
 
-  Going to use something like this
-  function handleHoursInput(e) {
-    let hours = e.target.value;
-    setEditing({...editing, hours});
-}
-  */
-
-  const [newQuestion, setNewQuestion] = useState(props.questionData.question);
-  const [newAnswer1, setNewAnswer1] = useState(props.questionData.answer1);
-  const [newAnswer2, setNewAnswer2] = useState(props.questionData.answer2);
-  const [newAnswer3, setNewAnswer3] = useState(props.questionData.answer3);
-  const [newAnswer4, setNewAnswer4] = useState(props.questionData.answer4);
-  const [newCorrectAnswer, setNewCorrectAnswer] = useState(props.questionData.correctAnswer);
-
-  const handleChangeNewQuestion = (event) => {
-    setNewQuestion(event.target.value);
+  const handleChangeQuestionData = (event) => {
+    setQuestionData({ ...questionData, [event.target.name]: event.target.value });
   };
-
-  const handleChangeNewAnswer1 = (event) => {
-    setNewAnswer1(event.target.value);
-  };
-
-  const handleChangeNewAnswer2 = (event) => {
-    setNewAnswer2(event.target.value);
-  };
-
-  const handleChangeNewAnswer3 = (event) => {
-    setNewAnswer3(event.target.value);
-  };
-
-  const handleChangeNewAnswer4 = (event) => {
-    setNewAnswer4(event.target.value);
-  };
-
-  const handleChangeNewCorrectAnswer = (event) => {
-    setNewCorrectAnswer(event.target.value);
-  };
-
 
   const handleCloseQuestionModal = () =>{
     setShowEditQuestionModal(false);
-  }
+  };
 
   const handleClickEdit = () => {
       setShowEditQuestionModal(true);
-  }
+  };
 
   const handleSaveChanges = () => {
     fetch(url + '/quiz/' + props.quizData.username + '/' + props.quizData.quizId, {
@@ -78,12 +40,12 @@ function QuestionListItem(props) {
       },
       body: JSON.stringify({
         "questionId": props.questionData.questionId,
-        "question": newQuestion,
-        "answer1": newAnswer1,
-        "answer2": newAnswer2,
-        "answer3": newAnswer3,
-        "answer4": newAnswer4,
-        "correctAnswer": newCorrectAnswer,
+        "question": questionData.question,
+        "option1": questionData.option1,
+        "option2": questionData.option2,
+        "option3": questionData.option3,
+        "option4": questionData.option4,
+        "correctAnswer": questionData.correctAnswer,
       })
     })
     .then(res => res.json())
@@ -139,80 +101,85 @@ function QuestionListItem(props) {
                 as="textarea"
                 name="question"
                 placeholder="Question"
-                onChange={handleChangeNewQuestion}
-                value={newQuestion}
+                onChange={handleChangeQuestionData}
+                value={questionData.question}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
               <Form.Label>Answer 1</Form.Label>
               <Form.Control
-                name="answer1"
+                name="option1"
                 placeholder="Answer 1"
-                onChange={handleChangeNewAnswer1}
-                value={newAnswer1}
+                onChange={handleChangeQuestionData}
+                value={questionData.option1}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
               <Form.Label>Answer 2</Form.Label>
               <Form.Control
-                name="answer2"
+                name="option2"
                 placeholder="Answer 2"
-                onChange={handleChangeNewAnswer2}
-                value={newAnswer2}
+                onChange={handleChangeQuestionData}
+                value={questionData.option2}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
               <Form.Label>Answer 3</Form.Label>
               <Form.Control
-                name="answer3"
+                name="option3"
                 placeholder="Answer 3"
-                onChange={handleChangeNewAnswer3}
-                value={newAnswer3}
+                onChange={handleChangeQuestionData}
+                value={questionData.option3}
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="formUsername">
               <Form.Label>Answer 4</Form.Label>
               <Form.Control
-                name="title"
+                name="option4"
                 placeholder="Answer 4"
-                value={newAnswer4}
-                />
+                onChange={handleChangeQuestionData}
+                value={questionData.option4}
+              />
             </Form.Group>
             <Form.Group>
               <Form.Label as="legend">
-                Select correct answer
+                Select correct option
               </Form.Label>
               <Row>
                 <Col>
                   <Form.Check
                     type="radio"
-                    label="Answer 1 "
-                    name="answer"
+                    label="Answer 1"
+                    name="correctAnswer"
                     id="formHorizontalRadios1"
+                    value="option1"
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
                     label="Answer 2"
-                    name="answer"
+                    name="correctAnswer"
                     id="formHorizontalRadios2"
+                    value="option2"
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
                     label="Answer 3"
-                    name="answer"
+                    name="correctAnswer"
                     id="formHorizontalRadios3"
+                    value="option3"
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
-                    label="Answer 5"
-                    name="answer"
+                    label="Answer 4"
+                    name="correctAnswer"
                     id="formHorizontalRadios3"
+                    value="option4"
                   />
                 </Col>
               </Row>

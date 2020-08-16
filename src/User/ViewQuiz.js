@@ -20,36 +20,18 @@ function ViewQuiz(props) {
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
-  const [newQuestion, setNewQuestion] = useState('');
-  const [newAnswer1, setNewAnswer1] = useState('');
-  const [newAnswer2, setNewAnswer2] = useState('');
-  const [newAnswer3, setNewAnswer3] = useState('');
-  const [newAnswer4, setNewAnswer4] = useState('');
-  const [newCorrectAnswer, setNewCorrectAnswer] = useState('');
   const [questionList, setQuestionList] = useState([]);
+  const [questionData, setQuestionData] = useState({
+    'question': '',
+    'option1': '',
+    'option2': '',
+    'option3': '',
+    'option4': '',
+    'correctAnswer': '',
+  });
 
-  const handleChangeNewQuestion = (event) => {
-    setNewQuestion(event.target.value);
-  };
-
-  const handleChangeNewAnswer1 = (event) => {
-    setNewAnswer1(event.target.value);
-  };
-
-  const handleChangeNewAnswer2 = (event) => {
-    setNewAnswer2(event.target.value);
-  };
-
-  const handleChangeNewAnswer3 = (event) => {
-    setNewAnswer3(event.target.value);
-  };
-
-  const handleChangeNewAnswer4 = (event) => {
-    setNewAnswer4(event.target.value);
-  };
-
-  const handleChangeNewCorrectAnswer = (event) => {
-    setNewCorrectAnswer(event.target.value);
+  const handleChangeQuestionData = (event) => {
+    setQuestionData({ ...questionData, [event.target.name]: event.target.value });
   };
 
   const handleShowQuestionModal = () => {
@@ -69,12 +51,12 @@ function ViewQuiz(props) {
       body: JSON.stringify({
         "id": quizId,
         "username": username,
-        "question": newQuestion,
-        "answer1": newAnswer1,
-        "answer2": newAnswer2,
-        "answer3": newAnswer3,
-        "answer4": newAnswer4,
-        "correctAnswer": newCorrectAnswer,
+        "question": questionData.question,
+        "option1": questionData.option1,
+        "option2": questionData.option2,
+        "option3": questionData.option3,
+        "option4": questionData.option4,
+        "correctAnswer": questionData.correctAnswer,
       })
     })
     .then(res => res.json())
@@ -112,10 +94,10 @@ function ViewQuiz(props) {
           questionData={{
             'questionId': element._id,
             'question': element.question,
-            'answer1': element.answer1,
-            'answer2': element.answer2,
-            'answer3': element.answer3,
-            'answer4': element.answer4,
+            'option1': element.option1,
+            'option2': element.option2,
+            'option3': element.option3,
+            'option4': element.option4,
             'correctAnswer': element.correctAnswer,
           }}
           quizData={{
@@ -156,7 +138,7 @@ function ViewQuiz(props) {
 
       <Modal show={showQuestionModal}>
         <Modal.Header closeButton onClick={handleCloseQuestionModal}>
-          <Modal.Title>Add New Question</Modal.Title>
+          <Modal.Title>New Question</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -166,75 +148,86 @@ function ViewQuiz(props) {
                 as="textarea"
                 name="question"
                 placeholder="Question"
-                onChange={handleChangeNewQuestion}
+                onChange={handleChangeQuestionData}
+                value={questionData.question}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
-              <Form.Label>Answer 1</Form.Label>
+              <Form.Label>Option 1</Form.Label>
               <Form.Control
-                name="answer1"
-                placeholder="Answer 1"
-                onChange={handleChangeNewAnswer1}
+                name="option1"
+                placeholder="Option 1"
+                onChange={handleChangeQuestionData}
+                value={questionData.option1}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
-              <Form.Label>Answer 2</Form.Label>
+              <Form.Label>Option 2</Form.Label>
               <Form.Control
-                name="answer2"
-                placeholder="Answer 2"
-                onChange={handleChangeNewAnswer2}
+                name="option2"
+                placeholder="Option 2"
+                onChange={handleChangeQuestionData}
+                value={questionData.option2}
               />
             </Form.Group>
             <Form.Group controlId="formUsername">
-              <Form.Label>Answer 3</Form.Label>
+              <Form.Label>Option 3</Form.Label>
               <Form.Control
-                name="answer3"
-                placeholder="Answer 3"
-                onChange={handleChangeNewAnswer3}
+                name="option3"
+                placeholder="Option 3"
+                onChange={handleChangeQuestionData}
+                value={questionData.option3}
               />
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Answer 4</Form.Label>
+            <Form.Group controlId="formUsername">
+              <Form.Label>Option 4</Form.Label>
               <Form.Control
-                name="title"
-                placeholder="Answer 4"
-                />
+                name="option4"
+                placeholder="Option 4"
+                onChange={handleChangeQuestionData}
+                value={questionData.option4}
+              />
             </Form.Group>
+
             <Form.Group>
               <Form.Label as="legend">
-                Select correct answer
+                Select correct option
               </Form.Label>
               <Row>
                 <Col>
                   <Form.Check
                     type="radio"
-                    label="Answer 1 "
-                    name="answer"
+                    label="Option 1 "
+                    name="correctAnswer"
                     id="formHorizontalRadios1"
+                    value="option1"
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
-                    label="Answer 2"
-                    name="answer"
+                    label="Option 2"
+                    name="correctAnswer"
                     id="formHorizontalRadios2"
+                    value="option2"
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
-                    label="Answer 3"
-                    name="answer"
+                    label="Option 3"
+                    name="correctAnswer"
                     id="formHorizontalRadios3"
+                    value="option3"
                   />
                 </Col>
                 <Col>
                   <Form.Check
                     type="radio"
-                    label="Answer 5"
-                    name="answer"
+                    label="Option 4"
+                    name="correctAnswer"
                     id="formHorizontalRadios3"
+                    value="option4"
                   />
                 </Col>
               </Row>
@@ -252,6 +245,6 @@ function ViewQuiz(props) {
       </Modal>
     </>
   );
-}
+};
 
 export default ViewQuiz;
