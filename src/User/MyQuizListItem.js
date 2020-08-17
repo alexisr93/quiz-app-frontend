@@ -8,7 +8,25 @@ import {
   Link
 } from "react-router-dom";
 
+const url = 'http://localhost:4000'
+
 function MyQuizListItem(props) {
+  const handleClickDelete = () => {
+    fetch(url + '/quizzes/' + localStorage.getItem('username'), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "id": props.id,
+      })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      console.log('Will reload');
+    })
+   .catch(console.log)
+  }
   return (
     <Card style={{width: '100%'}} className="text-left mb-2">
       <Card.Body>
@@ -23,7 +41,7 @@ function MyQuizListItem(props) {
           <ButtonGroup className="float-right">
             <Button variant="outline-secondary">Start Quiz</Button>
             <Button variant="outline-secondary">View Results</Button>
-            <Button variant="outline-danger">Delete</Button>
+            <Button variant="outline-danger" onClick={handleClickDelete}>Delete</Button>
           </ButtonGroup>
           </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{props.description}</Card.Subtitle>
