@@ -5,6 +5,7 @@ import MyQuizList from './MyQuizList';
 import TakeQuizList from './TakeQuizList';
 import Create from './Create';
 import ViewQuiz from './ViewQuiz';
+import Quiz from '../Quiz/Quiz'
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,7 +30,7 @@ function User() {
         <Switch>
           <Route exact path="/user/">
             <>
-              Hello, {localStorage.getItem('username')}
+              <h3 className="mt-5">Hello, {localStorage.getItem('username')}</h3>
             </>
           </Route>
           <Route exact path="/user/takequizlist">
@@ -42,6 +43,7 @@ function User() {
           <Route exact path="/user/create">
             <Create/>
           </Route>
+          <Route exact path="/user/takequiz" component={Quiz} />
 
         </Switch>
       </Container>

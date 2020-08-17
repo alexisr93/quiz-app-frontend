@@ -41,7 +41,7 @@ function ViewQuiz(props) {
     setQuizData({ ...quizData, [event.target.name]: event.target.value });
   };
 
-
+  // Can probably change these to one for each Modal. 
   const handleShowQuestionModal = () => {
     setShowQuestionModal(true);
   };

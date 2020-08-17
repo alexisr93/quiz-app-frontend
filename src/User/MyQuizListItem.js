@@ -27,6 +27,7 @@ function MyQuizListItem(props) {
     })
    .catch(console.log)
   }
+
   return (
     <Card style={{width: '100%'}} className="text-left mb-2">
       <Card.Body>
@@ -39,7 +40,14 @@ function MyQuizListItem(props) {
           }}>{props.title}</Link>
 
           <ButtonGroup className="float-right">
-            <Button variant="outline-secondary">Start Quiz</Button>
+            <Button variant="outline-secondary">
+              <Link to={{
+                pathname: '/user/takequiz',
+                state: {
+                  id: props.id
+                }
+              }} style={{ color: 'inherit', textDecoration: 'none'}}>Start Quiz</Link>
+            </Button>
             <Button variant="outline-secondary">View Results</Button>
             <Button variant="outline-danger" onClick={handleClickDelete}>Delete</Button>
           </ButtonGroup>
