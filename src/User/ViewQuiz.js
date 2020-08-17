@@ -14,12 +14,10 @@ import QuestionListItem from './QuestionListItem';
 let url = 'http://localhost:4000';
 
 function ViewQuiz(props) {
-  const [quizId, setQuizId] = useState(props.location.state.id);
-  const [quizTitle, setQuizTitle] = useState('');
-  const [quizDescription, setQuizDescription] = useState('');
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const [showEditQuizModal, setShowEditQuizModal] = useState(false);
   const [questionList, setQuestionList] = useState([]);
   const [questionData, setQuestionData] = useState({
     'question': '',
@@ -29,10 +27,20 @@ function ViewQuiz(props) {
     'option4': '',
     'correctAnswer': '',
   });
+  const [quizData, setQuizData] = useState({
+    'quizId': props.location.state.id,
+    'quizTitle': '',
+    'quizDescription': '',
+  })
 
   const handleChangeQuestionData = (event) => {
     setQuestionData({ ...questionData, [event.target.name]: event.target.value });
   };
+
+  const handleChangeQuizData = (event) => {
+    setQuizData({ ...quizData, [event.target.name]: event.target.value });
+  };
+
 
   const handleShowQuestionModal = () => {
     setShowQuestionModal(true);
@@ -42,14 +50,22 @@ function ViewQuiz(props) {
     setShowQuestionModal(false);
   };
 
+  const handleShowEditQuiz = () => {
+    setShowEditQuizModal(true);
+  }
+
+  const handleCloseEditQuiz = () => {
+    setShowEditQuizModal(false);
+  }
+
   const handleSaveQuestion = () => {
-    fetch(url + '/quiz/' + username + '/' + quizId, {
+    fetch(url + '/quiz/' + username + '/' + quizData.quizId, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "id": quizId,
+        "id": quizData.quizId,
         "username": username,
         "question": questionData.question,
         "option1": questionData.option1,
@@ -67,11 +83,30 @@ function ViewQuiz(props) {
       setShowQuestionModal(false);
     })
    .catch(console.log)
-
   };
 
+  const handleSaveQuizDetails = () => {
+    fetch(url + '/quizzes/' + username, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'id': quizData.quizId,
+        'username': username,
+        'quizTitle': quizData.quizTitle,
+        'quizDescription': quizData.quizDescription,
+      })
+    })
+    .then(res => res.json())
+    .then(() => {
+      setShowEditQuizModal(false);
+    })
+   .catch(console.log)
+  }
+
   useEffect(() => {
-    fetch(url + '/quiz/' + username + '/' + quizId, {
+    fetch(url + '/quiz/' + username + '/' + quizData.quizId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -80,12 +115,15 @@ function ViewQuiz(props) {
     .then(res => res.json())
     .then((data) => {
       console.log(data);
-      setQuizTitle(data.title);
-      setQuizDescription(data.description);
+      setQuizData({
+        ...quizData,
+        'quizTitle': data.title,
+        'quizDescription': data.description,
+      });
       setQuizQuestions(data.questions);
     })
    .catch(console.log)
-  }, [quizId]);
+ }, [quizData.quizId]);
 
   useEffect(() => {
     setQuestionList(quizQuestions.map((element) => {
@@ -102,7 +140,7 @@ function ViewQuiz(props) {
           }}
           quizData={{
             'username': username,
-            'quizId': quizId,
+            'quizId': quizData.quizId,
           }}
         />
       );
@@ -115,12 +153,12 @@ function ViewQuiz(props) {
         <Row>
           <Card className="mb-4" style={{ width: '100%'}}>
             <Card.Body>
-              <Card.Title>{quizTitle}</Card.Title>
+              <Card.Title>{quizData.quizTitle}</Card.Title>
               <Card.Text>
-                {quizDescription}
+                {quizData.quizDescription}
               </Card.Text>
               <ButtonGroup className="float-right">
-                <Button variant="outline-secondary">Edit</Button>
+                <Button variant="outline-secondary" onClick={handleShowEditQuiz}>Edit</Button>
               </ButtonGroup>
             </Card.Body>
           </Card>
@@ -244,6 +282,42 @@ function ViewQuiz(props) {
           </Button>
           <Button variant="outline-secondary" onClick={handleSaveQuestion}>
             Save Question
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showEditQuizModal}>
+        <Modal.Header closeButton onClick={handleCloseEditQuiz}>
+          <Modal.Title>Edit Quiz Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                name="quizTitle"
+                placeholder="Title"
+                onChange={handleChangeQuizData}
+                value={quizData.quizTitle}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                name="quizDescription"
+                placeholder="Description"
+                onChange={handleChangeQuizData}
+                value={quizData.quizDescription}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-secondary" onClick={handleCloseEditQuiz}>
+            Close
+          </Button>
+          <Button variant="outline-secondary" onClick={handleSaveQuizDetails}>
+            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
