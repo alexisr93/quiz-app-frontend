@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-function ProblemNav() {
+function ProblemNav(props) {
   return (
     <div style={{width: '100%'}}>
       <Row>
@@ -23,10 +23,10 @@ function ProblemNav() {
           </Form>
         </Col>
         <Col md={4} lg={4}>
-          <Button variant="outline-secondary" block>Previous</Button>{' '}
+          <Button variant="outline-secondary" onClick={props.clickPrevious} block>Previous</Button>{' '}
         </Col>
         <Col md={4}>
-          <Button variant="outline-secondary" block>Next</Button>
+          <Button variant="outline-secondary" onClick={props.clickNext} block>Next</Button>
         </Col>
       </Row>
     </div>

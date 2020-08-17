@@ -7,12 +7,40 @@ import Row from 'react-bootstrap/Row';
 const url = 'http://localhost:4000'
 
 function Quiz(props) {
-  const [quizData, setData] = useState({
+  const [quizData, setQuizData] = useState({
     'quizId': props.location.state.id,
     'quizTitle': '',
     'quizDescription': '',
     'quizQuestions': []
   });
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questionList, setQuestionList] = useState([]);
+
+  const createQuestionList = () => {
+    let value = 0;
+    setQuestionList(quizData.quizQuestions.map((element)=> {
+      value += 1;
+      return(
+        <Problem number={value} questionData={element}/>
+      );
+    }));
+  }
+
+  const handleClickNext = () => {
+    if (currentQuestion < quizData.quizQuestions.length - 1){
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  }
+
+  const handleClickPrevious = () => {
+    if (currentQuestion >= 1){
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  }
+
+  useEffect(() => {
+    createQuestionList();
+  }, [quizData.quizQuestions]);
 
   useEffect(() => {
     fetch(url + '/quiz/' + localStorage.getItem('username') + '/' + quizData.quizId, {
@@ -37,10 +65,10 @@ function Quiz(props) {
   return (
     <Container className="mt-5">
       <Row className="justify-content-center" style={{height: '500px'}}>
-        <Problem/>
+        {questionList[currentQuestion]}
       </Row>
       <Row className="justify-content-center mt-5">
-        <ProblemNav/>
+        <ProblemNav  clickPrevious={handleClickPrevious} clickNext={handleClickNext}/>
       </Row>
     </Container>
   );

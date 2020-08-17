@@ -2,10 +2,10 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-function Answer() {
+function Answer(props) {
   return (
     <Button variant="light" size="lg" block>
-      This is an answer
+      {props.option}
     </Button>
   );
 }

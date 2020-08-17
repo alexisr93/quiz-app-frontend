@@ -4,15 +4,13 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
-function Question() {
+function Question(props) {
   return (
-    <Card className='text-left'>
+    <Card className='text-left' style={{width: '100%'}}>
       <Card.Body style={{width: '100%'}}>
-        <Card.Title>1.</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Question Title</Card.Subtitle>
+        <Card.Title>Question {props.number}.</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card's content. This is a question?
+          <h4 style={{fontWeight: 'normal'}}>{props.question}</h4>
         </Card.Text>
       </Card.Body>
     </Card>
