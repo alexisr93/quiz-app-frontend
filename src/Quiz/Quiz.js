@@ -15,6 +15,7 @@ function Quiz(props) {
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionList, setQuestionList] = useState([]);
+  const [totalQuestions, setTotalQuestions] = useState(0);
 
   const createQuestionList = () => {
     let value = 0;
@@ -24,6 +25,10 @@ function Quiz(props) {
         <Problem number={value} questionData={element}/>
       );
     }));
+  }
+
+  const handleDropdownChange = (value) => {
+    setCurrentQuestion(value - 1);
   }
 
   const handleClickNext = () => {
@@ -40,6 +45,7 @@ function Quiz(props) {
 
   useEffect(() => {
     createQuestionList();
+    setTotalQuestions(quizData.quizQuestions.length);
   }, [quizData.quizQuestions]);
 
   useEffect(() => {
@@ -68,7 +74,12 @@ function Quiz(props) {
         {questionList[currentQuestion]}
       </Row>
       <Row className="justify-content-center mt-5">
-        <ProblemNav  clickPrevious={handleClickPrevious} clickNext={handleClickNext}/>
+        <ProblemNav
+          dropdownChange={handleDropdownChange}
+          numQuestions={totalQuestions}
+          currentQuestion={currentQuestion + 1}
+          clickPrevious={handleClickPrevious}
+          clickNext={handleClickNext}/>
       </Row>
     </Container>
   );
