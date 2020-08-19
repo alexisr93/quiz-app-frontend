@@ -16,15 +16,20 @@ function Quiz(props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionList, setQuestionList] = useState([]);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [optionSelectedList, setOptionSelectedList] = useState([]);
+
+  const handleSelected = (option) => {
+    setOptionSelectedList(optionSelectedList.map((element, index) => {
+      if (index == currentQuestion) {
+        return option;
+      }
+      return element;
+    }));
+  }
 
   const createQuestionList = () => {
     let value = 0;
-    setQuestionList(quizData.quizQuestions.map((element)=> {
-      value += 1;
-      return(
-        <Problem number={value} questionData={element}/>
-      );
-    }));
+
   }
 
   const handleDropdownChange = (value) => {
@@ -45,7 +50,8 @@ function Quiz(props) {
 
   useEffect(() => {
     createQuestionList();
-    setTotalQuestions(quizData.quizQuestions.length);
+    setTotalQuestions(quizData.quizQuestions.length)
+    setOptionSelectedList(Array(quizData.quizQuestions.length).fill('1'));
   }, [quizData.quizQuestions]);
 
   useEffect(() => {
@@ -67,11 +73,20 @@ function Quiz(props) {
     })
    .catch(console.log)
  }, [quizData.quizId]);
-
+  let value = 0;
   return (
     <Container className="mt-5">
       <Row className="justify-content-center" style={{height: '500px'}}>
-        {questionList[currentQuestion]}
+        {quizData.quizQuestions.map((element)=> {
+          value += 1;
+          return(
+            <Problem
+              setSelected={handleSelected}
+              selected={optionSelectedList[currentQuestion]}
+              number={value}
+              questionData={element}/>
+          );
+        })[currentQuestion]}
       </Row>
       <Row className="justify-content-center mt-5">
         <ProblemNav
