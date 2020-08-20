@@ -13,7 +13,7 @@ function Quiz(props) {
     'quizQuestions': []
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [questionList, setQuestionList] = useState([]);
+  //const [questionList, setQuestionList] = useState([]);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [optionSelectedList, setOptionSelectedList] = useState([]);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
@@ -26,7 +26,6 @@ function Submit(props) {
       <Card.Body style={{width: '100%', height: '100%'}}>
         <Card.Title></Card.Title>
         <Card.Text>
-          <h4 style={{fontWeight: 'normal'}}></h4>
           <Button variant="outline-secondary" onClick={handleClickGoBack}>Go Back</Button>
           <Button variant="outline-primary" onClick={handleSubmit}>Submit</Button>
         </Card.Text>

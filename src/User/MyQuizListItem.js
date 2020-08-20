@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import {
   Link
@@ -21,7 +19,7 @@ function MyQuizListItem(props) {
     })
     .then(res => res.json())
     .then((data) => {
-      console.log('Will reload');
+      console.log('Have to reload to view changes');
     })
    .catch(console.log)
   }

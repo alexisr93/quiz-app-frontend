@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 
 function ProblemNav(props) {
-  const [dropOptions, setDropOptions] = useState([]);
+  //const [dropOptions, setDropOptions] = useState([]);
   const [current, setCurrent] = useState(props.currentQuestion);
 
   const handleClickDropdown = (event) => {

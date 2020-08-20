@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 function AnswerOption(props) {
@@ -23,7 +22,6 @@ function AnswerOption(props) {
   });
 
   return (
-
     <Button
       name={props.name}
       className={isActive}
