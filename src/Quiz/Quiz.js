@@ -5,8 +5,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Submit from './Submit';
 
-const url = 'http://localhost:4000'
-
 function Quiz(props) {
   const [quizData, setQuizData] = useState({
     'quizId': props.location.state.id,
@@ -65,7 +63,7 @@ function Quiz(props) {
   }, [quizData.quizQuestions]);
 
   useEffect(() => {
-    fetch(url + '/quiz/' + localStorage.getItem('username') + '/' + quizData.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + localStorage.getItem('username') + '/' + quizData.quizId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

@@ -3,8 +3,6 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 
-const url = 'http://localhost:4000'
-
 function Submit(props) {
   const history = useHistory();
 

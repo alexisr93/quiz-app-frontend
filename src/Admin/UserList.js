@@ -3,8 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import UserListItem from './UserListItem';
 
-let url = 'http://localhost:4000';
-
 class UserList extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +12,7 @@ class UserList extends React.Component {
     this.fetchUsers = this.fetchUsers.bind(this);
   }
   fetchUsers() {
-    fetch(url + '/user', {
+    fetch(process.env.REACT_APP_API_URL + '/user', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

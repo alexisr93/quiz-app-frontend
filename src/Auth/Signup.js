@@ -5,8 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 
-let url = 'http://localhost:4000';
-
 function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +30,7 @@ function Signup() {
   }
 
   const handleSubmit = (event) => {
-    fetch(url + '/signup', {
+    fetch(process.env.REACT_APP_API_URL + '/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

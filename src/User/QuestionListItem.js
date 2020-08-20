@@ -7,8 +7,6 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-let url = 'http://localhost:4000';
-
 function QuestionListItem(props) {
   const [showEditQuestionModal, setShowEditQuestionModal] = useState(false);
   const [questionData, setQuestionData] = useState({
@@ -33,7 +31,7 @@ function QuestionListItem(props) {
   };
 
   const handleSaveChanges = () => {
-    fetch(url + '/quiz/' + props.quizData.username + '/' + props.quizData.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + props.quizData.username + '/' + props.quizData.quizId, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -59,7 +57,7 @@ function QuestionListItem(props) {
   };
 
   const handleClickDeleteQuestion = () => {
-    fetch(url + '/quiz/' + props.quizData.username + '/' + props.quizData.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + props.quizData.username + '/' + props.quizData.quizId, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

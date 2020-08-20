@@ -11,8 +11,6 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import QuestionListItem from './QuestionListItem';
 
-let url = 'http://localhost:4000';
-
 function ViewQuiz(props) {
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [quizQuestions, setQuizQuestions] = useState([]);
@@ -41,7 +39,7 @@ function ViewQuiz(props) {
     setQuizData({ ...quizData, [event.target.name]: event.target.value });
   };
 
-  // Can probably change these to one for each Modal. 
+  // Can probably change these to one for each Modal.
   const handleShowQuestionModal = () => {
     setShowQuestionModal(true);
   };
@@ -59,7 +57,7 @@ function ViewQuiz(props) {
   }
 
   const handleSaveQuestion = () => {
-    fetch(url + '/quiz/' + username + '/' + quizData.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + username + '/' + quizData.quizId, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -86,7 +84,7 @@ function ViewQuiz(props) {
   };
 
   const handleSaveQuizDetails = () => {
-    fetch(url + '/quizzes/' + username, {
+    fetch(process.env.REACT_APP_API_URL + '/quizzes/' + username, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -106,7 +104,7 @@ function ViewQuiz(props) {
   }
 
   useEffect(() => {
-    fetch(url + '/quiz/' + username + '/' + quizData.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + username + '/' + quizData.quizId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

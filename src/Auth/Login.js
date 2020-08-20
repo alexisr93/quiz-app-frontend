@@ -8,8 +8,6 @@ import {
   useHistory,
 } from "react-router-dom";
 
-const url = 'http://localhost:4000';
-
 function Login(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +23,7 @@ function Login(props) {
   }
 
   const handleSubmit = (event) => {
-    fetch(url + '/login', {
+    fetch(process.env.REACT_APP_API_URL + '/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

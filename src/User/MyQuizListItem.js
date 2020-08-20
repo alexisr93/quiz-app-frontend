@@ -8,11 +8,9 @@ import {
   Link
 } from "react-router-dom";
 
-const url = 'http://localhost:4000'
-
 function MyQuizListItem(props) {
   const handleClickDelete = () => {
-    fetch(url + '/quizzes/' + localStorage.getItem('username'), {
+    fetch(process.env.REACT_APP_API_URL + '/quizzes/' + localStorage.getItem('username'), {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

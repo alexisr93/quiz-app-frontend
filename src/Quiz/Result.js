@@ -3,8 +3,6 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
-const url = 'http://localhost:4000'
-
 function Result(props) {
   const [score, setScore] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState([]);
@@ -21,7 +19,7 @@ function Result(props) {
   }, [correctAnswers]);
 
   useEffect(() => {
-    fetch(url + '/quiz/' + localStorage.getItem('username') + '/' + props.location.state.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + localStorage.getItem('username') + '/' + props.location.state.quizId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

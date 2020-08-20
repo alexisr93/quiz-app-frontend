@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-let url = 'http://localhost:4000';
-
 class UserList extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +44,7 @@ class UserList extends React.Component {
   }
 
   handleClickSaveChanges(event) {
-    fetch(url + '/user', {
+    fetch(process.env.REACT_APP_API_URL + '/user', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -69,7 +67,7 @@ class UserList extends React.Component {
   }
 
   handleConfirm(event) {
-    fetch(url + '/user', {
+    fetch(process.env.REACT_APP_API_URL + '/user', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

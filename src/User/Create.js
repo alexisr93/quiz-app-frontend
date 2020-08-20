@@ -4,8 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom'
 
-const url = 'http://localhost:4000';
-
 function Create() {
   const [show, setShow] = useState(true);
   const [title, setTitle] = useState('');
@@ -13,7 +11,7 @@ function Create() {
   const history = useHistory();
 
   const handleSaveChanges = () => {
-    fetch(url + '/quizzes', {
+    fetch(process.env.REACT_APP_API_URL + '/quizzes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

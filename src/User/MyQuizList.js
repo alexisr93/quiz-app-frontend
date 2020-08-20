@@ -4,8 +4,6 @@ import MyQuizListItem from './MyQuizListItem';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 
-const url = 'http://localhost:4000'
-
 function MyQuizList() {
   const [quizlist, setQuizlist] = useState([]);
   const [username, setUsername] = useState(localStorage.getItem('username'));
@@ -26,7 +24,7 @@ function MyQuizList() {
   }, [quizlist]);
 
   useEffect(() => {
-    fetch(url + '/quizzes/' + username, {
+    fetch(process.env.REACT_APP_API_URL + '/quizzes/' + username, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
