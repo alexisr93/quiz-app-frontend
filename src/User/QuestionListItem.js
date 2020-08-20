@@ -68,7 +68,7 @@ function QuestionListItem(props) {
     })
     .then(res => res.json())
     .then((data) => {
-      console.log('Question Deleted');
+      window.location.reload();
     })
    .catch(console.log)
   };

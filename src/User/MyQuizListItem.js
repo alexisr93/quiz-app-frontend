@@ -19,7 +19,7 @@ function MyQuizListItem(props) {
     })
     .then(res => res.json())
     .then((data) => {
-      console.log('Have to reload to view changes');
+      window.location.reload();
     })
    .catch(console.log)
   }
