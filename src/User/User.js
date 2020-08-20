@@ -6,6 +6,7 @@ import TakeQuizList from './TakeQuizList';
 import Create from './Create';
 import ViewQuiz from './ViewQuiz';
 import Quiz from '../Quiz/Quiz'
+import Result from '../Quiz/Result';
 import {
   BrowserRouter as Router,
   Switch,
@@ -44,6 +45,7 @@ function User() {
             <Create/>
           </Route>
           <Route exact path="/user/takequiz" component={Quiz} />
+          <Route exact path="/user/takequiz/result" component={Result} />
 
         </Switch>
       </Container>

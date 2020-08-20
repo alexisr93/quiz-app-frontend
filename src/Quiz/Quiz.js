@@ -3,6 +3,7 @@ import ProblemNav from './ProblemNav';
 import Problem from './Problem';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Submit from './Submit';
 
 const url = 'http://localhost:4000'
 
@@ -33,7 +34,16 @@ function Quiz(props) {
   }
 
   const handleDropdownChange = (value) => {
-    setCurrentQuestion(value - 1);
+    console.log(value);
+    if (value == -2) {
+      setCurrentQuestion(totalQuestions - 1);
+    }
+    else if (value == "Submit") {
+      setCurrentQuestion(-1);
+    }
+    else {
+      setCurrentQuestion(value - 1);
+    }
   }
 
   const handleClickNext = () => {
@@ -74,30 +84,43 @@ function Quiz(props) {
    .catch(console.log)
  }, [quizData.quizId]);
   let value = 0;
-  return (
-    <Container className="mt-5">
-      <Row className="justify-content-center" style={{height: '500px'}}>
-        {quizData.quizQuestions.map((element)=> {
-          value += 1;
-          return(
-            <Problem
-              setSelected={handleSelected}
-              selected={optionSelectedList[currentQuestion]}
-              number={value}
-              questionData={element}/>
-          );
-        })[currentQuestion]}
-      </Row>
-      <Row className="justify-content-center mt-5">
-        <ProblemNav
+
+  if (currentQuestion == -1) {
+    return (
+      <Container className="mt-5">
+        <Submit
+          quizId={quizData.quizId}
+          optionsSelected={optionSelectedList}
           dropdownChange={handleDropdownChange}
-          numQuestions={totalQuestions}
-          currentQuestion={currentQuestion + 1}
-          clickPrevious={handleClickPrevious}
-          clickNext={handleClickNext}/>
-      </Row>
-    </Container>
-  );
+        />
+      </Container>
+    )
+  } else {
+      return (
+        <Container className="mt-5">
+          <Row className="justify-content-center" style={{height: '500px'}}>
+            {quizData.quizQuestions.map((element)=> {
+              value += 1;
+              return(
+                <Problem
+                  setSelected={handleSelected}
+                  selected={optionSelectedList[currentQuestion]}
+                  number={value}
+                  questionData={element}/>
+              );
+            })[currentQuestion]}
+          </Row>
+          <Row className="justify-content-center mt-5">
+            <ProblemNav
+              dropdownChange={handleDropdownChange}
+              numQuestions={totalQuestions}
+              currentQuestion={currentQuestion + 1}
+              clickPrevious={handleClickPrevious}
+              clickNext={handleClickNext}/>
+          </Row>
+        </Container>
+    )
+  };
 }
 
 export default Quiz;
