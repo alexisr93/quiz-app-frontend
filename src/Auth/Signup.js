@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
@@ -10,6 +10,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [matches, setMatches] = useState('');
 
   let history = useHistory();
 
@@ -23,6 +24,9 @@ function Signup() {
 
   const handleChangeConfirmPassword = (event) => {
     setConfirmPassword(event.target.value);
+    if (password != confirmPassword) {
+      setMatches('Passwords do not match');
+    }
   }
 
   const handleChangeEmail = (event) => {
@@ -49,6 +53,13 @@ function Signup() {
     event.preventDefault();
   }
 
+  useEffect(() => {
+    if (password != confirmPassword) {
+      setMatches('Passwords do not match');
+    } else {
+      setMatches('')
+    }
+  }, [password, confirmPassword])
   return (
     <Container className="d-flex justify-content-center mt-5 pt-5">
       <Row
@@ -92,6 +103,9 @@ function Signup() {
               type="password"
               placeholder="Confirm Password"
             />
+            <Form.Text className="text-danger">
+              {matches}
+            </Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
