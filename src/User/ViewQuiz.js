@@ -61,7 +61,7 @@ function ViewQuiz(props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "id": quizData.quizId,
+        //"id": quizData.quizId,
         "username": username,
         "question": questionData.question,
         "option1": questionData.option1,

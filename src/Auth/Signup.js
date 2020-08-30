@@ -11,6 +11,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
   const [matches, setMatches] = useState('');
+  const [usernameTaken, setUsernameTaken] = useState('');
 
   let history = useHistory();
 
@@ -59,7 +60,13 @@ function Signup() {
     } else {
       setMatches('')
     }
-  }, [password, confirmPassword])
+  }, [password, confirmPassword]);
+
+  useEffect(() => {
+    //Fetch list of usernames before this, and check if current username is in list at this point
+    setUsernameTaken("Username is taken, choose a diffrent one")
+  }, [username]);
+
   return (
     <Container className="d-flex justify-content-center mt-5 pt-5">
       <Row
