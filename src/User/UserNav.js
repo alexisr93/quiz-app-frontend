@@ -32,7 +32,7 @@ function UserNav() {
                 <Nav.Link href="/user/takequizlist">Take Quiz</Nav.Link>
               </Link>
               <Link to="/user/quizlist/">
-                <Nav.Link href="/user/quizlist/">My Quizzes</Nav.Link>
+                <Nav.Link href="/user/quizlist">My Quizzes</Nav.Link>
               </Link>
               <Link to="/user/create">
                 <Nav.Link href="/user/create">Create</Nav.Link>

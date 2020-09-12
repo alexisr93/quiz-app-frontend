@@ -28,13 +28,12 @@ function Create() {
     })
     .catch(console.log)
     // TODO: Tell the user that they have successfully created a quiz
-    // TODO: Redirect to MyQuizzes so they can add questions
-    history.push('/user');
+    history.push('/user/quizlist');
   }
 
   const handleClose = () => {
     setShow(false);
-    history.push('/user');
+    history.push('/user/quizlist');
   }
 
   const handleChangeTitle = (event) => {
