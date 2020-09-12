@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import UserNav from './UserNav';
 import MyQuizList from './MyQuizList';
-import TakeQuizList from './TakeQuizList';
+import PublicQuizList from './PublicQuizList';
 import Create from './Create';
 import ViewQuiz from './ViewQuiz';
 import Quiz from '../Quiz/Quiz'
@@ -32,8 +32,8 @@ function User() {
           <Route exact path="/user/">
             <UserDashboard/>
           </Route>
-          <Route exact path="/user/takequizlist">
-            <TakeQuizList/>
+          <Route exact path="/user/publicquizlist">
+            <PublicQuizList/>
           </Route>
           <Route exact path="/user/quizlist">
             <MyQuizList/>

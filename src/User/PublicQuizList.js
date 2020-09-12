@@ -1,20 +1,20 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import TakeQuizListItem from './TakeQuizListItem';
+import PublicQuizListItem from './PublicQuizListItem';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 
-function TakeQuizList() {
+function PublicQuizList() {
   return (
     <>
       <FormGroup className="mt-4">
         <Form.Control placeholder="Search Quizzes"></Form.Control>
       </FormGroup>
       <ListGroup className="mt-4">
-        <TakeQuizListItem/>
+        <PublicQuizListItem/>
       </ListGroup>
     </>
   );
 }
 
-export default TakeQuizList;
+export default PublicQuizList;

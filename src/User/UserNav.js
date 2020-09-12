@@ -28,11 +28,14 @@ function UserNav() {
               <Link to="/user">
                 <Nav.Link href="/user">Home</Nav.Link>
               </Link>
-              <Link to="/user/takequizlist">
-                <Nav.Link href="/user/takequizlist">Take Quiz</Nav.Link>
-              </Link>
-              <Link to="/user/quizlist/">
+              <Link to="/user/quizlist">
                 <Nav.Link href="/user/quizlist">My Quizzes</Nav.Link>
+              </Link>
+              <Link to="/user/publicquizlist">
+                <Nav.Link href="/user/publicquizlist">Public Quizzes</Nav.Link>
+              </Link>
+              <Link to="/user/results">
+                <Nav.Link href="/user/results">Results</Nav.Link>
               </Link>
               <Link to="/user/create">
                 <Nav.Link href="/user/create">Create</Nav.Link>
