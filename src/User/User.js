@@ -8,6 +8,7 @@ import ViewQuiz from './ViewQuiz';
 import Quiz from '../Quiz/Quiz'
 import Result from '../Quiz/Result';
 import UserDashboard from './UserDashboard';
+import Results from './Results';
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,20 +30,13 @@ function User() {
       <UserNav/>
       <Container>
         <Switch>
-          <Route exact path="/user/">
-            <UserDashboard/>
-          </Route>
-          <Route exact path="/user/publicquizlist">
-            <PublicQuizList/>
-          </Route>
-          <Route exact path="/user/quizlist">
-            <MyQuizList/>
-          </Route>
+          <Route exact path="/user/" component={UserDashboard} />
+          <Route exact path="/user/publicquizlist" component={PublicQuizList} />
+          <Route exact path="/user/quizlist" component={MyQuizList} />
           <Route exact path="/user/quizlist/quiz" component={ViewQuiz} />
-          <Route exact path="/user/create">
-            <Create/>
-          </Route>
+          <Route exact path="/user/create" component={Create} />
           <Route exact path="/user/takequiz" component={Quiz} />
+          <Route exact path="/user/results" component={Results} />
           <Route exact path="/user/takequiz/result" component={Result} />
         </Switch>
       </Container>
