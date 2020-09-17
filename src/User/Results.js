@@ -9,7 +9,7 @@ function Results() {
   const [username, setUsername] = useState(localStorage.getItem('username'));
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/quizzes/' + username, {
+    fetch(process.env.REACT_APP_API_URL + '/results/' + username, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -19,9 +19,9 @@ function Results() {
     .then((data) => {
       setResultList(data.map(element => {
         return ({
-          _id: element._id,
-          title: element.title,
-          description: element.description
+          quizTitle: element.quizTitle,
+          quizScore: element.quizScore,
+          dateQuizTaken: element.dateQuizTaken
         });
       }));
     })
@@ -34,10 +34,9 @@ function Results() {
         {resultList.map((element) => {
           return (
             <ResultListItem
-              key={element._id}
-              quizName={element.title}
-              quizScore={element.title}
-              dateQuizTaken={element.description}
+              quizTitle={element.quizTitle}
+              quizScore={element.quizScore}
+              dateQuizTaken={element.dateQuizTaken}
             />
           );
         })}

@@ -13,7 +13,7 @@ function ResultListItem(props) {
             <Card.Title>
               Quiz Name:
             </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{props.quizName}</Card.Subtitle>
+            <Card.Subtitle className="mb-2 text-muted">{props.quizTitle}</Card.Subtitle>
           </Col>
           <Col>
             <Card.Title>

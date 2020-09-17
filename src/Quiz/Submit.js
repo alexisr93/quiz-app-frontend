@@ -9,7 +9,10 @@ function Submit(props) {
   const handleSubmit = () => {
     history.push({
       pathname: '/user/takequiz/result',
-      state: {quizId: props.quizId}
+      state: {
+        quizId: props.quizId,
+        quizTitle: props.quizTitle,
+      }
     });
   };
 

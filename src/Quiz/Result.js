@@ -4,7 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
 function Result(props) {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState('');
+  const [date, setDate] = useState('');
+  const [quizTitle, setQuizTitle] = useState(props.location.state.quizTitle);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState(JSON.parse(localStorage.getItem('userAnswers')));
 
@@ -15,10 +17,38 @@ function Result(props) {
         totalCorrect += 1;
       }
     })
-    setScore((totalCorrect/correctAnswers.length * 100).toFixed(1) + "%");
+
+    let newScore = (totalCorrect/correctAnswers.length * 100).toFixed(1) + "%"
+
+    setScore(newScore);
+
+    fetch(process.env.REACT_APP_API_URL + '/results/' + localStorage.getItem('username'), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'quizTitle': quizTitle,
+        'dateQuizTaken': date,
+        'quizScore': newScore,
+      })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+   .catch(console.log)
   }, [correctAnswers]);
 
   useEffect(() => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    let todaysDate = mm + '/' + dd + '/' + yyyy;
+
+    setDate(todaysDate);
+
     fetch(process.env.REACT_APP_API_URL + '/quiz/' + localStorage.getItem('username') + '/' + props.location.state.quizId, {
       method: 'GET',
       headers: {

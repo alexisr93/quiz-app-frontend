@@ -88,6 +88,7 @@ function Quiz(props) {
       <Container className="mt-5">
         <Submit
           quizId={quizData.quizId}
+          quizTitle={quizData.quizTitle}
           optionsSelected={optionSelectedList}
           dropdownChange={handleDropdownChange}
         />
