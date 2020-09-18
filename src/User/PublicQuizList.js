@@ -7,9 +7,6 @@ import FormGroup from 'react-bootstrap/FormGroup';
 function PublicQuizList() {
   return (
     <>
-      <FormGroup className="mt-4">
-        <Form.Control placeholder="Search Quizzes"></Form.Control>
-      </FormGroup>
       <ListGroup className="mt-4">
         <PublicQuizListItem/>
       </ListGroup>

@@ -45,9 +45,6 @@ function MyQuizList() {
 
   return (
     <>
-      <FormGroup className="mt-4">
-        <Form.Control placeholder="Search Quizzes"></Form.Control>
-      </FormGroup>
       <ListGroup className="mt-4">
         {componentList}
       </ListGroup>
