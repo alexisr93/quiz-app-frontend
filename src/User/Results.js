@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import ResultListItem from './ResultListItem';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
 
 function Results() {
   const [resultList, setResultList] = useState([]);
@@ -29,19 +30,28 @@ function Results() {
   }, []);
 
   return (
-    <>
-      <ListGroup className="mt-4">
-        {resultList.map((element) => {
-          return (
-            <ResultListItem
-              quizTitle={element.quizTitle}
-              quizScore={element.quizScore}
-              dateQuizTaken={element.dateQuizTaken}
-            />
-          );
-        })}
-      </ListGroup>
-    </>
+    <Container className="mt-4">
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Quiz Name</th>
+            <th>Score</th>
+            <th>Date Taken</th>
+          </tr>
+        </thead>
+        <tbody>
+          {resultList.map((element) => {
+            return (
+              <ResultListItem
+                quizTitle={element.quizTitle}
+                quizScore={element.quizScore}
+                dateQuizTaken={element.dateQuizTaken}
+              />
+            );
+          })}
+        </tbody>
+      </Table>
+    </Container>
   );
 }
 
