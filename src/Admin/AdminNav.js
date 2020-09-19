@@ -12,6 +12,7 @@ function AdminNav() {
   let history = useHistory();
 
   const handleSignout = () => {
+    localStorage.clear();
     history.push('/login');
   }
   return (

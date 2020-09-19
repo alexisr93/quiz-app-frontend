@@ -39,7 +39,10 @@ function Login(props) {
       localStorage.setItem('username', username);
     })
     .then(() => {
-      if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username')){
+      if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username') == "admin"){
+        history.push('/admin');
+      }
+      else if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username')){
         history.push('/user');
       }
     })
@@ -48,7 +51,10 @@ function Login(props) {
   }
   // There may be a bug in useEffect or just above in the final .then()
   useEffect(() => {
-    if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username')){
+    if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username') == "admin"){
+      history.push('/admin');
+    }
+    else if (localStorage.getItem('token') !== 'undefined' && localStorage.getItem('username')){
       history.push('/user');
     }
   })
