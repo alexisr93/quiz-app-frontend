@@ -40,8 +40,8 @@ function MyQuizList() {
               description={element.description}
             />
           );
-        })};
-    </ListGroup>
+        })}
+      </ListGroup>
     </>
   );
 }

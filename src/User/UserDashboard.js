@@ -22,7 +22,7 @@ function UserDashboard() {
       let failed = data.filter(element => {
         return parseInt(element.quizScore.slice(0 , -1)) < 60;
       }).length;
-      
+
       setDashBoardData({
         quizzesTaken: data.length,
         lastQuizTaken: data[Object.keys(data)[Object.keys(data).length - 1]].quizTitle ,
@@ -34,7 +34,7 @@ function UserDashboard() {
   return (
     <>
       <h2 className="mt-4 mb-5">Hi, {username}!</h2>
-      <h4>Quizzes Take:</h4>
+      <h4>Quizzes Taken:</h4>
       <h1>{dashboardData.quizzesTaken}</h1>
       <br/>
       <h4>Last Quiz Taken:</h4>
