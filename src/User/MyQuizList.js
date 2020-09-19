@@ -7,21 +7,6 @@ import FormGroup from 'react-bootstrap/FormGroup';
 function MyQuizList() {
   const [quizlist, setQuizlist] = useState([]);
   const [username, setUsername] = useState(localStorage.getItem('username'));
-  const [componentList, setComponentList] = useState([]);
-
-  useEffect(() => {
-    console.log(quizlist);
-    setComponentList(quizlist.map((element) => {
-      return(
-        <MyQuizListItem
-          key={element._id}
-          id={element._id}
-          title={element.title}
-          description={element.description}
-        />
-      );
-    }));
-  }, [quizlist]);
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + '/quizzes/' + username, {
@@ -46,8 +31,17 @@ function MyQuizList() {
   return (
     <>
       <ListGroup className="mt-4">
-        {componentList}
-      </ListGroup>
+        {quizlist.map((element) => {
+          return(
+            <MyQuizListItem
+              key={element._id}
+              id={element._id}
+              title={element.title}
+              description={element.description}
+            />
+          );
+        })};
+    </ListGroup>
     </>
   );
 }
