@@ -13,7 +13,6 @@ function Quiz(props) {
     'quizQuestions': []
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  //const [questionList, setQuestionList] = useState([]);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [optionSelectedList, setOptionSelectedList] = useState([]);
 
@@ -37,7 +36,7 @@ function Quiz(props) {
       setCurrentQuestion(totalQuestions - 1);
     }
     else if (value == "Submit") {
-      setCurrentQuestion(-1);
+      setCurrentQuestion(totalQuestions);
     }
     else {
       setCurrentQuestion(value - 1);
@@ -45,7 +44,7 @@ function Quiz(props) {
   }
 
   const handleClickNext = () => {
-    if (currentQuestion < quizData.quizQuestions.length - 1){
+    if (currentQuestion <= quizData.quizQuestions.length - 1){
       setCurrentQuestion(currentQuestion + 1);
     }
   }
@@ -83,7 +82,7 @@ function Quiz(props) {
  }, [quizData.quizId]);
   let value = 0;
 
-  if (currentQuestion == -1) {
+  if (currentQuestion == totalQuestions) {
     return (
       <Container className="mt-5">
         <Submit
