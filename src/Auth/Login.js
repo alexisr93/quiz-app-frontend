@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import {
   Link,
   useHistory,
@@ -11,6 +12,7 @@ import {
 function Login(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   let history = useHistory();
 
@@ -35,6 +37,13 @@ function Login(props) {
     })
     .then(res => res.json())
     .then((data) => {
+      if (data.error) {
+        setShowAlert(true);
+      }
+      else {
+        setShowAlert(false);
+      }
+
       localStorage.setItem('token', data.token);
       localStorage.setItem('username', username);
     })
@@ -96,6 +105,11 @@ function Login(props) {
             </Button>
           </Link>
         </Form>
+        <Alert className="mt-4" show={showAlert} variant="danger">
+         <p>
+          Username and/or password are incorrect
+         </p>
+       </Alert>
       </Row>
     </Container>
   );
