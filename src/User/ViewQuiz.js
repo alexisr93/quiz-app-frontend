@@ -162,8 +162,6 @@ function ViewQuiz(props) {
         <Row className="mb-4">
           <ButtonGroup className="float-right">
             <Button variant="outline-secondary" onClick={handleShowQuestionModal}>Add Question</Button>
-            <Button variant="outline-secondary">Select All</Button>
-            <Button variant="outline-danger">Delete</Button>
           </ButtonGroup>
         </Row>
         <Row>
