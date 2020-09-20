@@ -12,6 +12,7 @@ function Submit(props) {
       state: {
         quizId: props.quizId,
         quizTitle: props.quizTitle,
+        username: props.username,
       }
     });
   };

@@ -63,7 +63,7 @@ function Quiz(props) {
   }, [quizData.quizQuestions]);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/quiz/' + localStorage.getItem('username') + '/' + quizData.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + props.location.state.username + '/' + quizData.quizId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -91,6 +91,7 @@ function Quiz(props) {
           quizTitle={quizData.quizTitle}
           optionsSelected={optionSelectedList}
           dropdownChange={handleDropdownChange}
+          username={props.location.state.username}
         />
       </Container>
     )
