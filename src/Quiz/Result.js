@@ -49,7 +49,7 @@ function Result(props) {
 
     setDate(todaysDate);
 
-    fetch(process.env.REACT_APP_API_URL + '/quiz/' + localStorage.getItem('username') + '/' + props.location.state.quizId, {
+    fetch(process.env.REACT_APP_API_URL + '/quiz/' + props.location.state.username + '/' + props.location.state.quizId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
