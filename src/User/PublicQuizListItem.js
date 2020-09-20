@@ -13,6 +13,7 @@ function PublicQuizListItem(props) {
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [resultList, setResultList] = useState([]);
   const handleClose = () => setShow(false);
+
   const handleShow = () => {
     setShow(true);
     fetch(process.env.REACT_APP_API_URL + '/results/' + username, {
@@ -61,19 +62,14 @@ function PublicQuizListItem(props) {
       <Card style={{width: '100%'}} className="text-left mb-2">
         <Card.Body>
           <Card.Title>
-            <Link to={{
-              pathname: '/user/quizlist/quiz',
-              state: {
-                id: props.id
-              }
-            }}>{props.title}</Link>
-
+            {props.title}
             <ButtonGroup className="float-right">
               <Button variant="outline-secondary">
                 <Link to={{
                   pathname: '/user/takequiz',
                   state: {
-                    id: props.id
+                    username: props.createdBy,
+                    id: props.id,
                   }
                 }} style={{ color: 'inherit', textDecoration: 'none'}}>Start Quiz</Link>
               </Button>
@@ -81,6 +77,7 @@ function PublicQuizListItem(props) {
             </ButtonGroup>
             </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{props.description}</Card.Subtitle>
+          <Card.Subtitle className="mt-2 mb-2 text-muted">Created By: {props.createdBy}</Card.Subtitle>
         </Card.Body>
       </Card>
 

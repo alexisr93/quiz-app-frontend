@@ -9,7 +9,7 @@ function PublicQuizList() {
   const [username, setUsername] = useState(localStorage.getItem('username'));
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + '/quizzes/' + username, {
+    fetch(process.env.REACT_APP_API_URL + '/user', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -17,12 +17,19 @@ function PublicQuizList() {
     })
     .then(res => res.json())
     .then((data) => {
-      setQuizlist(data.map(element => {
-        return ({
+      let quizzes = []
+
+      data.forEach(element => {
+        quizzes.push(...element.quizzes);
+      })
+
+      setQuizlist(quizzes.map(element => {
+        return {
           _id: element._id,
           title: element.title,
-          description: element.description
-        });
+          description: element.description,
+          createdBy: element.createdBy,
+        }
       }));
     })
     .catch(console.log)
@@ -38,6 +45,7 @@ function PublicQuizList() {
               id={element._id}
               title={element.title}
               description={element.description}
+              createdBy={element.createdBy}
             />
           );
         })}

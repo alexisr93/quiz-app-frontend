@@ -21,7 +21,8 @@ function MyQuizList() {
         return ({
           _id: element._id,
           title: element.title,
-          description: element.description
+          description: element.description,
+          createdBy: element.createdBy,
         });
       }));
     })
@@ -38,6 +39,7 @@ function MyQuizList() {
               id={element._id}
               title={element.title}
               description={element.description}
+              createdBy={element.createdBy}
             />
           );
         })}

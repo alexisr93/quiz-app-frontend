@@ -73,6 +73,7 @@ function MyQuizListItem(props) {
                 <Link to={{
                   pathname: '/user/takequiz',
                   state: {
+                    username: props.createdBy,
                     id: props.id
                   }
                 }} style={{ color: 'inherit', textDecoration: 'none'}}>Start Quiz</Link>
